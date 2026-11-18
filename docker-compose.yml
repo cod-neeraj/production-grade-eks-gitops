@@ -1,0 +1,94 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: shopsphere-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hello
+    ports:
+      - "5433:5432"         
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  auth-service:
+    build: ./auth-service
+    environment:
+      SERVER_PORT: 8081                                   # CHECK
+      AUTH_DB_URL: jdbc:postgresql://postgres:5432/shopsphere_auth   # CHECK name
+      DB_USERNAME: postgres
+      DB_PASSWORD: hello
+      JWT_SECRET: 9f3a7c2e8b1d6a405f9e2c7b3d8a1f6e4c9b0d2a7e5f1c8b6d3a9e2f7c4b5a10
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  product-service:
+    build: ./product-service
+    environment:
+      SERVER_PORT: 8082                                   # CHECK
+      PRODUCT_DB_URL: jdbc:postgresql://postgres:5432/shopsphere_products  # CHECK
+      DB_USERNAME: postgres
+      DB_PASSWORD: hello
+      JWT_SECRET: 9f3a7c2e8b1d6a405f9e2c7b3d8a1f6e4c9b0d2a7e5f1c8b6d3a9e2f7c4b5a10
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  order-service:
+    build: ./order-service
+    environment:
+      SERVER_PORT: 8083                                   # CHECK
+      ORDER_DB_URL: jdbc:postgresql://postgres:5432/shopsphere_orders   # CHECK
+      DB_USERNAME: postgres
+      DB_PASSWORD: hello
+      JWT_SECRET: 9f3a7c2e8b1d6a405f9e2c7b3d8a1f6e4c9b0d2a7e5f1c8b6d3a9e2f7c4b5a10
+      PRODUCT_SERVICE_URL: http://product-service:8082
+      INVENTORY_SERVICE_URL: http://inventory-service:8084
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  inventory-service:
+    build: ./inventory-service
+    environment:
+      SERVER_PORT: 8084
+      INVENTORY_DB_URL: jdbc:postgresql://postgres:5432/shopsphere_inventory
+      DB_USERNAME: postgres
+      DB_PASSWORD: hello
+      JWT_SECRET: 9f3a7c2e8b1d6a405f9e2c7b3d8a1f6e4c9b0d2a7e5f1c8b6d3a9e2f7c4b5a10
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"                                       # CHECK gateway port
+    environment:
+      SERVER_PORT: 8080
+      AUTH_SERVICE_URL: http://auth-service:8081          # CHECK var names
+      PRODUCT_SERVICE_URL: http://product-service:8082
+      ORDER_SERVICE_URL: http://order-service:8083
+      INVENTORY_SERVICE_URL: http://inventory-service:8084
+      JWT_SECRET: 9f3a7c2e8b1d6a405f9e2c7b3d8a1f6e4c9b0d2a7e5f1c8b6d3a9e2f7c4b5a10
+    depends_on:
+      - auth-service
+      - product-service
+      - order-service
+      - inventory-service
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api-gateway
+
+volumes:
+  pgdata:
