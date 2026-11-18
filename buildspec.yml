@@ -1,0 +1,49 @@
+version: 0.2
+
+env:
+  variables:
+    TRIVY_SEVERITY: "CRITICAL"
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto21
+      nodejs: 20
+    commands:
+      - echo "Installing Trivy"
+      - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+
+  pre_build:
+    commands:
+      - echo "Building service $SERVICE"
+      - test -n "$SERVICE" || (echo "SERVICE variable is not set" && exit 1)
+      - test -d "$SERVICE" || (echo "Folder $SERVICE not found" && exit 1)
+      - ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+      - REGISTRY=$ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - IMAGE=$REGISTRY/shopsphere/$SERVICE
+      - TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c1-8)
+      - echo "Image will be $IMAGE:$TAG"
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REGISTRY
+
+  build:
+    commands:
+      - |
+        if [ "$SERVICE" != "frontend" ]; then
+          echo "Running unit tests"
+          (cd $SERVICE && mvn -B test)
+        fi
+      - echo "Building Docker image"
+      - docker build -t $IMAGE:$TAG ./$SERVICE
+      - echo "Scanning image with Trivy"
+      - trivy image --severity $TRIVY_SEVERITY --ignore-unfixed --exit-code 0 $IMAGE:$TAG
+
+  post_build:
+    commands:
+      - |
+        if [ "$CODEBUILD_BUILD_SUCCEEDING" = "1" ]; then
+          echo "Pushing image"
+          docker push $IMAGE:$TAG
+          echo "Pushed $IMAGE:$TAG"
+        else
+          echo "Build failed, image not pushed"
+        fi
