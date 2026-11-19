@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shop-config
+  namespace: shopsphere
+data:
+  AUTH_DB_URL: jdbc:postgresql://postgres:5432/shopsphere_auth
+  PRODUCT_DB_URL: jdbc:postgresql://postgres:5432/shopsphere_products
+  ORDER_DB_URL: jdbc:postgresql://postgres:5432/shopsphere_orders
+  INVENTORY_DB_URL: jdbc:postgresql://postgres:5432/shopsphere_inventory
+  PRODUCT_SERVICE_URL: http://product-service:8082
+  INVENTORY_SERVICE_URL: http://inventory-service:8084
+  AUTH_SERVICE_URL: http://auth-service:8081
+  ORDER_SERVICE_URL: http://order-service:8083
