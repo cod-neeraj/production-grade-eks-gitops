@@ -30,11 +30,11 @@ CREATE INDEX idx_users_username ON users(username);
 
 -- Admin user: password is 'Admin@123' (BCrypt hashed)
 INSERT INTO users (username, email, password_hash, first_name, last_name, role) VALUES
-('admin', 'admin@shopsphere.local', '$2a$10$1Eyl7cDM.HdaJi/1xYcyf.K.KMImnerb6o/3o4.pqda1xB1SzcrZq', 'Admin', 'User', 'ADMIN');
+('admin', 'admin@shopsphere.local', '$2a$10$Gs1K3kzmQR8SFQv5cSfh3OLDTFWpzSIghgOaKntwjDe8oI/ddW2Qi', 'Admin', 'User', 'ADMIN');
 
 -- Sample customer: password is 'Customer@123' (BCrypt hashed)  
 INSERT INTO users (username, email, password_hash, first_name, last_name, role) VALUES
-('john_doe', 'john@example.com', '$2a$10$1.7fOLDhMRY1j0iLbwgGEO/HHEzGQIEcfxBLiH.CKrQcpdITWDwPq', 'John', 'Doe', 'CUSTOMER');
+('john_doe', 'john@example.com', '$2a$10$TYQZrBB47KeibukB9bS6Z.ffuOMZu350mNu8jqycwtm1zMEg6TJ..', 'John', 'Doe', 'CUSTOMER');
 
 -- ============================================================
 -- Products Database Setup
