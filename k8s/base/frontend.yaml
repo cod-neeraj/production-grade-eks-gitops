@@ -27,6 +27,8 @@ spec:
         runAsGroup: 101
         seccompProfile:
           type: RuntimeDefault
+      imagePullSecrets:
+        - name: ecr-pull
       containers:
         - name: frontend
           image: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/frontend:ccb1464e

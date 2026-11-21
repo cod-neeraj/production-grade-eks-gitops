@@ -29,6 +29,8 @@ spec:
         fsGroup: 101
         seccompProfile:
           type: RuntimeDefault
+      imagePullSecrets:
+        - name: ecr-pull
       containers:
         - name: api-gateway-service
           image: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway:ccb1464e
