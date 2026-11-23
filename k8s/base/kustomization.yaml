@@ -15,7 +15,8 @@ images:
   newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway
   newTag: 237124da
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service
-  newTag: latest
+  newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service
+  newTag: 237124da
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/frontend
   newTag: latest
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/inventory-service
