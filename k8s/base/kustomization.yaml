@@ -10,6 +10,8 @@ resources:
 - frontend.yaml
 - inventory-service.yaml
 - api-gateway.yaml
+- secrets.yaml
+- ebsStorage.yaml
 images:
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway
   newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway
