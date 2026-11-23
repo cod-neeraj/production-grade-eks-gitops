@@ -12,6 +12,9 @@ phases:
     commands:
       - echo "Installing Trivy"
       - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+      - echo "Installing kustomize"
+      - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+      - mv kustomize /usr/local/bin/kustomize
 
   pre_build:
     commands:
@@ -44,6 +47,16 @@ phases:
           echo "Pushing image"
           docker push $IMAGE:$TAG
           echo "Pushed $IMAGE:$TAG"
+
+          echo "Updating image tag in Git"
+          git clone https://x-access-token:${GITHUB_TOKEN}@github.com/cod-neeraj/production-grade-eks-gitops.git manifests
+          cd manifests/k8s/base
+          kustomize edit set image $IMAGE=$IMAGE:$TAG
+          git config user.email "codebuild@shopsphere.local"
+          git config user.name "codebuild"
+          git commit -am "deploy $SERVICE:$TAG [skip ci]"
+          git pull --rebase origin main
+          git push origin main
         else
           echo "Build failed, image not pushed"
         fi
