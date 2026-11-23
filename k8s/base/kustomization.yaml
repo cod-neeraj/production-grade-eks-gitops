@@ -16,7 +16,7 @@ images:
   newTag: c5d010cf
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service
   newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service
-  newTag: 237124da
+  newTag: 491e7614
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/frontend
   newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/frontend
   newTag: c5d010cf
