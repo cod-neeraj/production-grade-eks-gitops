@@ -25,4 +25,5 @@ images:
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/order-service
   newTag: latest
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/product-service
-  newTag: latest
+  newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/product-service
+  newTag: 72197fe1
