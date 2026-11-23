@@ -23,14 +23,14 @@ spec:
         app: auth-service
     spec:
       terminationGracePeriodSeconds: 30
+      nodeSelector:
+        node-role.kubernetes.io/code: "true"  
       securityContext:
         runAsNonRoot: true
         runAsUser: 100
         fsGroup: 101
         seccompProfile:
           type: RuntimeDefault
-      imagePullSecrets:
-        - name: ecr-pull
       containers:
         - name: auth-service
           image: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service:ccb1464e
@@ -97,15 +97,15 @@ spec:
       volumes:
         - name: tmp
           emptyDir: {}
-      # affinity:
-      #   podAntiAffinity:
-      #     preferredDuringSchedulingIgnoredDuringExecution:
-      #       - weight: 100
-      #         podAffinityTerm:
-      #           topologyKey: kubernetes.io/hostname
-      #           labelSelector:
-      #             matchLabels:
-      #               app: auth-service
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchLabels:
+                    app: auth-service
 ---
 apiVersion: v1
 kind: Service

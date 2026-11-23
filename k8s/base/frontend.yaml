@@ -21,6 +21,8 @@ spec:
         app: frontend
     spec:
       terminationGracePeriodSeconds: 30
+      nodeSelector:
+        node-role.kubernetes.io/code: "true"
       securityContext:
         runAsNonRoot: true
         runAsUser: 101
