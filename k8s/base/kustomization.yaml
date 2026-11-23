@@ -2,25 +2,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: shopsphere
 resources:
-  - namespace.yaml
-  - configmap.yaml
-  - auth-service.yaml
-  - product-service.yaml
-  - order-service.yaml
-  - frontend.yaml
-  - inventory-service.yaml
-  - api-gateway.yaml
+- namespace.yaml
+- configmap.yaml
+- auth-service.yaml
+- product-service.yaml
+- order-service.yaml
+- frontend.yaml
+- inventory-service.yaml
+- api-gateway.yaml
 images:
-  - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service
-    newTag: latest
-  - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/product-service
-    newTag: latest
-  - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/order-service
-    newTag: latest
-  - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/frontend
-    newTag: latest
-  - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/inventory-service
-    newTag: latest
-  - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway
-    newTag: latest
-  
+- name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway
+  newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway
+  newTag: 237124da
+- name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service
+  newTag: latest
+- name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/frontend
+  newTag: latest
+- name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/inventory-service
+  newTag: latest
+- name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/order-service
+  newTag: latest
+- name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/product-service
+  newTag: latest
