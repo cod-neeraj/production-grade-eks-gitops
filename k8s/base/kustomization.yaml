@@ -13,20 +13,14 @@ resources:
 - ebsStorage.yaml
 images:
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway
-  newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway
   newTag: c5d010cf
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service
-  newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service
-  newTag: 491e7614
+  newTag: c5d010cf
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/frontend
-  newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/frontend
   newTag: c5d010cf
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/inventory-service
-  newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/inventory-service
   newTag: 491e7614
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/order-service
-  newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/order-service
   newTag: c5d010cf
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/product-service
-  newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/product-service
   newTag: c5d010cf

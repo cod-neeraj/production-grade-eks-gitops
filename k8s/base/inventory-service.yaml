@@ -34,7 +34,7 @@ spec:
         - name: ecr-pull
       containers:
         - name: inventory-service
-          image: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/inventory-service:ccb1464e
+          image: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/inventory-service:491e7614
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
