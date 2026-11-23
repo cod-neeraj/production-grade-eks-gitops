@@ -28,4 +28,4 @@ images:
   newTag: 95ddd253
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/product-service
   newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/product-service
-  newTag: 72197fe1
+  newTag: c5d010cf
