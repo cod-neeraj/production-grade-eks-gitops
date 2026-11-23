@@ -54,12 +54,12 @@ spec:
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: shop-secret
+                  name: product-secret
                   key: DB_PASSWORD
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: shop-secret
+                  name: product-secret
                   key: JWT_SECRET
           resources:
             requests:
