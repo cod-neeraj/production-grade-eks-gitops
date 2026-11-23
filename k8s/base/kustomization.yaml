@@ -13,7 +13,7 @@ resources:
 images:
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway
   newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway
-  newTag: 237124da
+  newTag: c5d010cf
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service
   newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service
   newTag: 237124da
