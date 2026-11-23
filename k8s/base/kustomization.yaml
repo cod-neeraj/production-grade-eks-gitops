@@ -20,7 +20,8 @@ images:
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/frontend
   newTag: latest
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/inventory-service
-  newTag: latest
+  newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/inventory-service
+  newTag: 237124da
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/order-service
   newTag: latest
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/product-service
