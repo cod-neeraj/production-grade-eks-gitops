@@ -16,7 +16,8 @@ images:
   newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway
   newTag: 02e17686
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service
-  newTag: c5d010cf
+  newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service
+  newTag: 02e17686
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/frontend
   newTag: c5d010cf
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/inventory-service
