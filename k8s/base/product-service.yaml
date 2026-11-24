@@ -55,7 +55,7 @@ spec:
             - name: DB_NAME
               valueFrom:
                  secretKeyRef: { name: product-secret, key: DB_NAME }
-            - name: AUTH_DB_URL
+            - name: PRODUCT_DB_URL
               value: "jdbc:postgresql://$(DB_HOST):$(DB_PORT)/$(DB_NAME)"
             - name: DB_USERNAME
               valueFrom:
