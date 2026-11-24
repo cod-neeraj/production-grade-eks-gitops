@@ -24,6 +24,7 @@ images:
   newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/inventory-service
   newTag: 02e17686
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/order-service
-  newTag: c5d010cf
+  newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/order-service
+  newTag: f9aaec37
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/product-service
   newTag: c5d010cf
