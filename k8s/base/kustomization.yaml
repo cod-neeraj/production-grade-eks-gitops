@@ -13,7 +13,8 @@ resources:
 - ebsStorage.yaml
 images:
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway
-  newTag: c5d010cf
+  newName: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/api-gateway
+  newTag: 02e17686
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/auth-service
   newTag: c5d010cf
 - name: 088253294231.dkr.ecr.ap-south-1.amazonaws.com/shopsphere/frontend
