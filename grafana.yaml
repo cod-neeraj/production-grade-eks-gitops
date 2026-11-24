@@ -1,0 +1,18 @@
+grafana:
+  adminPassword: "helloworld12345"
+  resources:
+    requests: { cpu: 100m, memory: 256Mi }
+prometheus:
+  prometheusSpec:
+    retention: 7d
+    resources:
+      requests: { cpu: 300m, memory: 1Gi }
+      limits: { memory: 2Gi }
+    # pick up ServiceMonitors from any namespace, without Helm labels
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
+alertmanager:
+  alertmanagerSpec:
+    resources:
+      requests: { cpu: 50m, memory: 128Mi }
