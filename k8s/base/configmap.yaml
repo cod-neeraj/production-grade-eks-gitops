@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: shop-config
 data:
+  MANAGEMENT_METRICS_DISTRIBUTION_PERCENTILES_HISTOGRAM_HTTP_SERVER_REQUESTS: "true"
   AUTH_DB_URL: jdbc:postgresql://app-postgres.cluster-cf2gmy2ee52d.ap-south-1.rds.amazonaws.com:5432/auth_svc?sslmode=require
   PRODUCT_DB_URL: jdbc:postgresql://app-postgres.cluster-cf2gmy2ee52d.ap-south-1.rds.amazonaws.com:5432/product_svc?sslmode=require
   ORDER_DB_URL: jdbc:postgresql://app-postgres.cluster-cf2gmy2ee52d.ap-south-1.rds.amazonaws.com:5432/order_svc?sslmode=require
