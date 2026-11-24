@@ -1,16 +1,12 @@
 -- ShopSphere Database Initialization Script
 -- Run this as a PostgreSQL superuser or the database owner
 
--- Create databases
-CREATE DATABASE shopsphere_auth;
-CREATE DATABASE shopsphere_products;
-CREATE DATABASE shopsphere_orders;
-CREATE DATABASE shopsphere_inventory;
+
 
 -- ============================================================
 -- Auth Database Setup
 -- ============================================================
-\c shopsphere_auth;
+\c auth_db;
 
 CREATE TABLE IF NOT EXISTS users (
     id BIGSERIAL PRIMARY KEY,
@@ -39,7 +35,7 @@ INSERT INTO users (username, email, password_hash, first_name, last_name, role) 
 -- ============================================================
 -- Products Database Setup
 -- ============================================================
-\c shopsphere_products;
+\c product_db;
 
 CREATE TABLE IF NOT EXISTS products (
     id BIGSERIAL PRIMARY KEY,
@@ -85,7 +81,7 @@ INSERT INTO products (name, description, price, category, sku, image_url, availa
 -- ============================================================
 -- Inventory Database Setup
 -- ============================================================
-\c shopsphere_inventory;
+\c inventory_db;
 
 CREATE TABLE IF NOT EXISTS inventory (
     id BIGSERIAL PRIMARY KEY,
@@ -125,7 +121,7 @@ INSERT INTO inventory (product_id, quantity, reserved_quantity) VALUES
 -- ============================================================
 -- Orders Database Setup
 -- ============================================================
-\c shopsphere_orders;
+\c order_db;
 
 CREATE TABLE IF NOT EXISTS orders (
     id BIGSERIAL PRIMARY KEY,
@@ -151,3 +147,16 @@ CREATE TABLE IF NOT EXISTS order_items (
 CREATE INDEX idx_orders_user_id ON orders(user_id);
 CREATE INDEX idx_orders_status ON orders(status);
 CREATE INDEX idx_order_items_order_id ON order_items(order_id);
+
+\c auth_db
+GRANT ALL ON ALL TABLES IN SCHEMA public TO auth_svc;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO auth_svc;
+\c product_db
+GRANT ALL ON ALL TABLES IN SCHEMA public TO product_svc;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO product_svc;
+\c inventory_db
+GRANT ALL ON ALL TABLES IN SCHEMA public TO inventory_svc;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO inventory_svc;
+\c order_db
+GRANT ALL ON ALL TABLES IN SCHEMA public TO order_svc;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO order_svc;
